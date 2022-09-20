@@ -1,26 +1,22 @@
 class Solution {
 public:
-   int findLength(std::vector<int>& nums1, std::vector<int>& nums2) {
-	const int m = nums1.size(), n = nums2.size();
-	int result = 0;
-	for (int offset = 0; offset < m; offset++) {
-		for (int i = offset, j = 0; i < m && j < n; ) {
-			int count = 0;
-			while (i < m && j < n && nums1[i++] == nums2[j++]) {
-				count++;
-			}
-			result = std::max(result, count);
-		}
-	}
-	for (int offset = 0; offset < n; offset++) {
-		for (int i = 0, j = offset; i < m && j < n; ) {
-			int count = 0;
-			while (i < m && j < n && nums1[i++] == nums2[j++]) {
-				count++;
-			}
-			result = std::max(result, count);
-		}
-	}
-	return result;
-}
+    int solve(int ind1,int ind2,vector<int>& nums1, vector<int>& nums2,int &ans,vector<vector<int>>&dp){
+        if(ind1==nums1.size() || ind2==nums2.size()) return 0;
+        if(dp[ind1][ind2]!=-1) return dp[ind1][ind2];
+        dp[ind1][ind2]=0;
+        if(nums1[ind1]==nums2[ind2]){
+           dp[ind1][ind2]=1+ solve(ind1+1,ind2+1,nums1,nums2,ans,dp);
+        }
+       solve(ind1+1,ind2,nums1,nums2,ans,dp);
+        solve(ind1,ind2+1,nums1,nums2,ans,dp);
+        ans= max(ans,dp[ind1][ind2]);
+        return dp[ind1][ind2];
+        
+    }
+    int findLength(vector<int>& nums1, vector<int>& nums2) {
+        vector<vector<int>>dp(nums1.size(),vector<int>(nums2.size(),-1));
+        int ans=INT_MIN;
+         solve(0,0,nums1,nums2,ans,dp);
+        return ans;
+    }
 };
