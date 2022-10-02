@@ -2,7 +2,7 @@ class Solution {
 public:
    const int mod = 1e9+7;
     //Memoization Approach
-      int dp[31][10001];
+      int dp[31][1001];
       int helper(int dice,int k,int target){
          if(target < 0)return 0;
          if(dice == 0 and target !=0)return 0;
