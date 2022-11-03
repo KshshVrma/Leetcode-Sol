@@ -6,7 +6,7 @@ public:
         for(int i=0;i<4;i++){
             nrow=sr+delr[i];
             ncol=sc+delc[i];
-            if(nrow<n&&nrow>=0&&ncol<m&&ncol>=0  && arr[nrow][ncol]!=color&&image[nrow][ncol]==curr){
+            if(nrow<n&&nrow>=0&&ncol<m&&ncol>=0  && arr[nrow][ncol]==curr){
                 dfs(nrow,ncol,arr,image,color,delr,delc,curr,n,m);
             }
         }
@@ -20,6 +20,7 @@ public:
         int m=image[0].size();
         int delr[4]={-1,0,1,0};
         int delc[4]={0,1,0,-1};
+        if(curr==color)return arr;
         dfs(sr,sc,arr,image,color,delr,delc,curr,n,m);
         return arr;
     }
