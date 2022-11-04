@@ -1,0 +1,17 @@
+   string reverseVowels(string s) {
+        string st;
+        for(int i=0;i<s.length();i++){
+            if(s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u'||s[i]=='A'||s[i]=='E'||s[i]=='I'||s[i]=='O'||s[i]=='U'){
+                st.push_back(s[i]);
+            }
+        }
+        reverse(st.begin(),st.end());
+        int j=0;
+        for(int i=0;i<s.length();i++){
+             if(s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u'||s[i]=='A'||s[i]=='E'||s[i]=='I'||s[i]=='O'||s[i]=='U'){
+                s[i]=st[j];
+                j++;
+            }
+        }
+        return s;
+    }
