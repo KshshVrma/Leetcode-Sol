@@ -1,0 +1,43 @@
+class Solution {
+public:
+bool bfs(vector<vector<int>>&adj,vector<int>&vis,int node,int n){
+queue<pair<int,bool>>q;
+q.push({node,0});
+vis[node]=0;
+while(!q.empty()){
+int one=q.front().first;
+bool two=q.front().second;
+q.pop();
+for(auto it:adj[one]){
+if(vis[it]==-1){
+    q.push({it,!two});
+    vis[it]=int(!two);
+}else{
+if(int(two)==vis[it])return false;
+}
+}
+}
+return true;
+
+
+}
+    bool isBipartite(vector<vector<int>>& adj) {
+        int n=adj.size();
+      
+        vector<int>vis(n);
+        for(int i=0;i<vis.size();i++){
+vis[i]=-1;
+        }
+        
+        for(int i=0;i<n;i++){
+            if(vis[i]==-1){
+
+                if(!bfs(adj,vis,i,n)){
+                    return false;
+                }
+            }
+        }
+        return true;
+
+    }
+};
