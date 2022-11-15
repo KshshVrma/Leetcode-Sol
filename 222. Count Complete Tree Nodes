@@ -1,0 +1,14 @@
+void f(TreeNode*root,vector<int>&vec){
+    if(root==NULL){
+        return ;
+    }
+    f(root->left,vec);
+    vec.push_back(root->val);
+    f(root->right,vec);
+}
+    int countNodes(TreeNode* root) {
+        vector<int>vec;
+        f(root,vec);
+        return vec.size();
+
+    }
